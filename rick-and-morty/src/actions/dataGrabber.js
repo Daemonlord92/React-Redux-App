@@ -7,9 +7,10 @@ export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE'
 export const getData = () => dispatch => {
     dispatch({ type: FETCH_DATA_START})
     axios
-        .get("https://rickandmortyapi.com/api/")
+        .get("https://rickandmortyapi.com/api/character")
         .then(res => {
-            dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data})
+            console.log(res)
+            dispatch({ type: FETCH_DATA_SUCCESS, payload: res.results})
         })
         .catch(err => {
             dispatch({ type: FETCH_DATA_FAILURE, payload: err.response})

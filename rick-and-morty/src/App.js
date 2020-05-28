@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
 
-function App() {
+import { connect } from 'react-redux'
+import { getData} from "./actions/dataGrabber"
+
+function App(props) {
+
+    useEffect(() => {
+        props.getData()
+    }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p>{props.data}</p>
     </div>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        data: state.data,
+        isDataLoading: state.isLoading,
+        dataError: state.err
+    }
+}
+
+const mapDispatchToProps = {
+    getData
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+) (App);
