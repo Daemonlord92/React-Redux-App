@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
+import CharacterCard from "./components/CharacterCard";
 
 import { connect } from 'react-redux'
-import { getData} from "./actions/dataGrabber"
+import { getData } from "./actions/dataGrabber"
 
 function App(props) {
 
     useEffect(() => {
         props.getData()
     }, [])
+    console.log(props)
   return (
     <div className="App">
-        <p>{props.data}</p>
+        { props.data.map(character => <p>{character.name}</p>)}
     </div>
   );
 }
@@ -23,11 +25,11 @@ function mapStateToProps(state) {
     }
 }
 
-const mapDispatchToProps = {
-    getData
-}
+//const mapDispatchToProps = dispatch = {
+ //   getData
+//}
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    { getData }
 ) (App);

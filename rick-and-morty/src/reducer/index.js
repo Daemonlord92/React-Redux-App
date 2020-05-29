@@ -3,12 +3,12 @@ import { FETCH_DATA_START,
         FETCH_DATA_FAILURE } from "../actions/dataGrabber"
 
 export const initialState = {
-    data: null,
+    data: [],
     isLoading: false,
     error: null
 }
 
-export function reducer(state = initialState, action) {
+export function reducer(state= initialState, action) {
     switch (action.type) {
         case FETCH_DATA_START:
             return{
