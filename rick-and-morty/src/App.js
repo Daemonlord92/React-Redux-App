@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import CharacterCard from "./components/CharacterCard";
 
 import { connect } from 'react-redux'
@@ -11,9 +12,14 @@ function App(props) {
     }, [])
     console.log(props)
   return (
-    <div className="App">
-        { props.data.map(character => <p>{character.name}</p>)}
-    </div>
+    <Container>
+        <Row>
+            <Col>
+                <h1>Rick and Morty</h1>
+            </Col>
+            { props.data.map(character => <CharacterCard name={character.name} image={character.image} status={character.status} />)}
+        </Row>
+    </Container>
   );
 }
 
