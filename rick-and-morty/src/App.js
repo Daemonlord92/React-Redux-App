@@ -13,12 +13,15 @@ function App(props) {
     console.log(props)
   return (
     <Container>
-        <Row>
             <Col>
-                <h1>Rick and Morty</h1>
+                <Row>
+                    <h1>Rick and Morty</h1>
+                </Row>
+                <Row>
+                    { props.data.map(character => <CharacterCard name={character.name} image={character.image} status={character.status} />)}
+                </Row>
             </Col>
-            { props.data.map(character => <CharacterCard name={character.name} image={character.image} status={character.status} />)}
-        </Row>
+
     </Container>
   );
 }
